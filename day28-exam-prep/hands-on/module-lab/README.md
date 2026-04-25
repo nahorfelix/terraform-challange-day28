@@ -1,9 +1,12 @@
 ﻿# Module Lab Notes
 
-Use this folder to build a tiny reusable module and consume it from a root config.
+This folder is used to rehearse module composition and output wiring.
 
-Checklist:
-- variables.tf
-- main.tf
-- outputs.tf
-- root call with module block
+Practice outcomes:
+- Created module with `variables.tf`, `main.tf`, `outputs.tf`
+- Called module from root config
+- Passed values through input variables
+- Consumed outputs in root and cross-module flow
+
+Goal:
+Eliminate mistakes about module boundaries and sibling communication patterns.

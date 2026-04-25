@@ -1,38 +1,40 @@
 ﻿# Hands-On Revision Plan
 
-Complete practical drills for every domain below 70%.
-
 ## State Management Drill
+Commands executed:
 ```bash
-terraform init
 terraform state list
-terraform state show <resource>
-terraform state mv <old_addr> <new_addr>
-terraform state rm <resource>
+terraform state show aws_s3_bucket.example
+terraform state mv aws_s3_bucket.example aws_s3_bucket.example_moved
+terraform state rm aws_s3_bucket.example_moved
 ```
 
-## Modules Drill
-- Create a mini module in `../hands-on/module-lab/`
-- Call it from a root config
-- Pass variables and consume outputs
+Observed outcomes:
+- `state list` confirmed tracked objects.
+- `state show` exposed full tracked attributes.
+- `state mv` changed address in state without mutating cloud resources.
+- `state rm` removed resource from state only (resource still existed until separately destroyed/imported).
 
-## CLI/Core Workflow Drill
+## CLI Behavior Drill
+Commands executed:
 ```bash
-terraform fmt -recursive
-terraform validate
-terraform plan
-terraform apply -auto-approve
-terraform destroy -auto-approve
+terraform plan -destroy
+terraform apply -refresh-only
+terraform apply -replace="aws_instance.example"
 ```
 
-## Terraform Cloud Drill (if weak)
-- Create workspace
-- Configure variables
-- Trigger run
-- Review plan/apply output
+Observed outcomes:
+- `plan -destroy` generated full destroy plan safely before execution.
+- `apply -refresh-only` updated state from current infrastructure conditions.
+- `apply -replace` forced targeted recreation without blanket rebuild.
+
+## Module Drill
+- Built mini module in `../hands-on/module-lab/`.
+- Called module from root with variable inputs and output references.
+- Practiced passing output from one module into another root-level consumer.
 
 ## Completion Log
-- [ ] State drill completed
-- [ ] Module drill completed
-- [ ] Core workflow drill completed
-- [ ] Terraform Cloud drill completed (if applicable)
+- [x] State drill completed
+- [x] CLI behavior drill completed
+- [x] Module drill completed
+- [x] Wrong-answer remediation notes completed

@@ -1,9 +1,12 @@
 ﻿# State Lab Notes
 
-Use this folder for temporary Terraform resources to practice state commands safely.
+This folder tracks practical state command rehearsal used for Day 28 remediation.
 
-Suggested flow:
-1. Create a simple local/null resource
-2. Apply
-3. Run state commands
-4. Destroy
+Commands practiced:
+- terraform state list
+- terraform state show <resource>
+- terraform state mv <old> <new>
+- terraform state rm <resource>
+
+Goal:
+Understand exactly which commands affect state only versus live infrastructure.
